@@ -12,34 +12,48 @@ namespace ChatServer.ServerHelpers
 	public class UDPListener : IDisposable
 	{
 		private readonly UdpClient _server;
+		private const int SIO_UDP_CONNRESET = -1744830452;
 		private bool _disposed;
+
 
 		public IPEndPoint Endpoint { get; }
 
-		public event Func<byte[], IPEndPoint, Task> BytesReceived = (x, y) => { return Task.CompletedTask; };
+		public event Func<byte[], IPEndPoint, Task> OnReceive;
 
 		public UDPListener(IPEndPoint hostEndpoint)
 		{
-			_server = new UdpClient();
+			_server = new UdpClient(hostEndpoint);
 			Endpoint = hostEndpoint;
-			_server.Connect(Endpoint);
 		}
+		~UDPListener()
+		{
+			Dispose();
+		}
+
 		public UDPListener(IPAddress addr, int port) : this(new IPEndPoint(addr, port)) { }
 
 		public async void StartListening()
 		{
 			while (true)
 			{
-				var b = await _server.ReceiveAsync();
-				await BytesReceived(b.Buffer, b.RemoteEndPoint);
+				try
+				{
+					var b = await _server.ReceiveAsync();
+					if (OnReceive != null)
+						await OnReceive(b.Buffer, b.RemoteEndPoint);
+				}
+				catch
+				{
+					
+				}
 			}
 		}
-
+		
 		public async Task<int> SendAsync(byte[] dgram, int bytes, IPEndPoint ep)
 		=> await _server.SendAsync(dgram, bytes, ep);
 
 		public async Task<int> SendAsync(byte[] dgram, IPEndPoint ep)
-		=> await SendAsync(dgram, dgram.Length, ep);		
+		=> await SendAsync(dgram, dgram.Length, ep);
 
 		public void Dispose()
 		{
