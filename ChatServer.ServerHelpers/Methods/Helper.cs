@@ -1,57 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Security.Cryptography;
 
 namespace ChatServer.ServerHelpers.Methods
 {
-	
-	public struct SFrameMaskData
-	{
-		public int DataLength, KeyIndex, TotalLenght;
-		public EOpcodeType Opcode;
-
-		public SFrameMaskData(int DataLength, int KeyIndex, int TotalLenght, EOpcodeType Opcode)
-		{
-			this.DataLength = DataLength;
-			this.KeyIndex = KeyIndex;
-			this.TotalLenght = TotalLenght;
-			this.Opcode = Opcode;
-		}
-	}
-
-	/// <summary>
-	/// Enum for opcode types
-	/// </summary>
-	public enum EOpcodeType
-	{
-		/* Denotes a continuation code */
-		Fragment = 0,
-
-		/* Denotes a text code */
-		Text = 1,
-
-		/* Denotes a binary code */
-		Binary = 2,
-
-		/* Denotes a closed connection */
-		ClosedConnection = 8,
-
-		/* Denotes a ping*/
-		Ping = 9,
-
-		/* Denotes a pong */
-		Pong = 10
-	}
-
-	
 	public static class Helpers
 	{
-		/// <summary>Gets data for a encoded websocket frame message</summary>
-		/// <param name="Data">The data to get the info from</param>
-		/// <returns>The frame data</returns>
 		public static SFrameMaskData GetFrameData(byte[] Data)
 		{
 			// Get the opcode of the frame
