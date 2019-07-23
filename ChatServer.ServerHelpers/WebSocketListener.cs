@@ -8,26 +8,103 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using ChatServer.ServerHelpers.Methods;
 using System.Linq;
+using System.Collections;
 
 namespace ChatServer.ServerHelpers
 {
 	[Serializable]
-	public class WebSocketListener : IDisposable
+	public class WebSocketListener : IDisposable, IEnumerable<WSClient>
 	{
 		private readonly TcpListener _listener;
 		private readonly IPEndPoint _ep;
 		private static Encoding enc = Encoding.UTF8;
-		private const string n = "\r\n";
 		private bool _disposed;
 		private int _bSize;
 		private List<WSClient> _clients;
+		private Func<WSClient, string, byte[], Task> _onReceive;
+		private Func<WSClient, Task> _onConnect;
+		private Func<WSClient, Task> _onDisconnect;
 
-		public event Func<WSClient, string, byte[], Task> OnReceive = (x,y,z) => { return Task.CompletedTask; };
-		public event Func<WSClient, Task> OnConnect = (x) => { return Task.CompletedTask; };
-		public event Func<WSClient, Task> OnDisconnect = (x) => { return Task.CompletedTask; };
+
+		public event Func<WSClient, string, byte[], Task> OnReceive
+		{
+			add
+			{
+				if (value == null)
+					return;
+				if(_onReceive == null)
+				{
+					_onReceive = value;
+					return;
+				}
+				_onReceive += value;
+			}
+			remove
+			{
+				if (value == null)
+					return;
+				if (_onReceive != null)
+				{
+					_onReceive -= value;
+				}
+			}
+		}
+		public event Func<WSClient, Task> OnConnect
+		{
+			add
+			{
+				if (value == null)
+					return;
+				if (_onConnect == null)
+				{
+					_onConnect = value;
+					return;
+				}
+				_onConnect += value;
+			}
+			remove
+			{
+				if (value == null)
+					return;
+				if (_onConnect != null)
+				{
+					_onConnect -= value;
+				}
+			}
+		}
+		public event Func<WSClient, Task> OnDisconnect
+		{
+			add
+			{
+				if (value == null)
+					return;
+				if (_onDisconnect == null)
+				{
+					_onDisconnect = value;
+					return;
+				}
+				_onDisconnect += value;
+			}
+			remove
+			{
+				if (value == null)
+					return;
+				if (_onDisconnect != null)
+				{
+					_onDisconnect -= value;
+				}
+			}
+		}
 
 		public int BufferSize { get => _bSize; set => _bSize = value; }
 		public IReadOnlyList<WSClient> ConnectedClients => _clients.ToList();
+		public WSClient this[int index]
+		{
+			get
+			{
+				return _clients[index];
+			}
+		}
 
 		public WebSocketListener(IPEndPoint ep, int bufferSize = 4096)
 		{
@@ -91,7 +168,8 @@ namespace ChatServer.ServerHelpers
 
 			var c = new WSClient(client);
 			_clients.Add(c);
-			await OnConnect(c);	
+			if(_onConnect != null)
+				await _onConnect(c);	
 
 			while (true)
 			{
@@ -104,18 +182,21 @@ namespace ChatServer.ServerHelpers
 
 					if(b.Opcode != EOpcodeType.Text)
 					{
-						await OnReceive(c, null, data);
+						if(_onReceive != null)
+							await _onReceive(c, null, data);
 					}
 					else
 					{
-						await OnReceive(c, Helpers.GetDataFromFrame(b, data), data);
+						if(_onReceive != null)
+							await _onReceive(c, Helpers.GetDataFromFrame(b, data), data);
 					}
 				}
 				catch
 				{
 					c.Dispose();
 					_clients.Remove(c);
-					await OnDisconnect(c);
+					if(_onDisconnect != null)
+						await _onDisconnect(c);
 					return;
 				}
 			}
@@ -125,6 +206,15 @@ namespace ChatServer.ServerHelpers
 		{
 			return (b & (1 << bitNumber)) != 0;
 		}
-	
+
+		public IEnumerator<WSClient> GetEnumerator()
+		{
+			return _clients.GetEnumerator();
+		}
+
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return GetEnumerator();
+		}
 	}
 }
