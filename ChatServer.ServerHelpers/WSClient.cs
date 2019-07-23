@@ -1,8 +1,8 @@
 ﻿using System.Net.Sockets;
-using System.Text;
 using ChatServer.ServerHelpers.Methods;
 using System.Threading.Tasks;
 using System;
+using System.Net;
 
 namespace ChatServer.ServerHelpers
 {
@@ -12,8 +12,20 @@ namespace ChatServer.ServerHelpers
 		private readonly NetworkStream _stream;
 		private readonly TcpClient _client;
 		private bool _disposed;
+		private IPEndPoint _ep;
 
-		
+		public IPEndPoint Endpoint
+		{
+			get
+			{
+				if(_ep == null)
+				{
+					_ep = ((IPEndPoint)_client.Client.RemoteEndPoint);
+				}
+				return _ep;
+			}
+		}
+
 		internal WSClient(TcpClient client)
 		{
 			_client = client;
