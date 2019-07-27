@@ -3,6 +3,8 @@ using ChatServer.ServerHelpers.Methods;
 using System.Threading.Tasks;
 using System;
 using System.Net;
+using Newtonsoft.Json;
+using ChatServer.Messaging;
 
 namespace ChatServer.ServerHelpers
 {
@@ -35,6 +37,11 @@ namespace ChatServer.ServerHelpers
 		public async Task SendMessageAsync(String message)
 		{
 			byte[] bytes = Helpers.GetFrameFromString(message);
+			await _stream.WriteAsync(bytes, 0, bytes.Length);
+		}
+		public async Task SendPacketAsync(string eventType, object packet)
+		{
+			byte[] bytes = Helpers.GetFrameFromString(JsonConvert.SerializeObject(new MessageObject(eventType, packet)));
 			await _stream.WriteAsync(bytes, 0, bytes.Length);
 		}
 

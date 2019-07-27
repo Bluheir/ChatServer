@@ -15,14 +15,18 @@ namespace ChatServer.ServerHelpers
 		private const int SIO_UDP_CONNRESET = -1744830452;
 		private bool _disposed;
 
-
 		public IPEndPoint Endpoint { get; }
 
 		public event Func<byte[], IPEndPoint, Task> OnReceive;
 
 		public UDPListener(IPEndPoint hostEndpoint)
 		{
-			_server = new UdpClient(hostEndpoint);
+			_server = new UdpClient(hostEndpoint)
+			{
+				EnableBroadcast = true,
+				
+			};
+			
 			Endpoint = hostEndpoint;
 		}
 		~UDPListener()
@@ -48,6 +52,9 @@ namespace ChatServer.ServerHelpers
 				}
 			}
 		}
+
+		public async Task<int> SendAsync(byte[] dgram, string host, int port)
+		=> await _server.SendAsync(dgram, dgram.Length, host, port);
 		
 		public async Task<int> SendAsync(byte[] dgram, int bytes, IPEndPoint ep)
 		=> await _server.SendAsync(dgram, bytes, ep);

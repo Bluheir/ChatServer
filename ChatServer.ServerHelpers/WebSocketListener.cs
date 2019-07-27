@@ -154,6 +154,7 @@ namespace ChatServer.ServerHelpers
 				byte[] data = new byte[_bSize];
 				var i = await stream.ReadAsync(data, 0, data.Length);
 				string val = enc.GetString(data, 0, i);
+				
 
 				string requestKey = Helpers.GetHandshakeRequestKey(val);
 				string response = (Helpers.GetHandshakeResponse(Helpers.HashKey(requestKey)));

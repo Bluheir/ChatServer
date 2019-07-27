@@ -1,0 +1,21 @@
+C:\Users\User\source\repos\ChatServer\ChatServer.ServerHelpers\bin\Debug\netstandard2.0\ChatServer.ServerHelpers.deps.json
+C:\Users\User\source\repos\ChatServer\ChatServer.ServerHelpers\bin\Debug\netstandard2.0\ChatServer.ServerHelpers.dll
+C:\Users\User\source\repos\ChatServer\ChatServer.ServerHelpers\bin\Debug\netstandard2.0\ChatServer.ServerHelpers.pdb
+C:\Users\User\source\repos\ChatServer\ChatServer.ServerHelpers\obj\Debug\netstandard2.0\ChatServer.ServerHelpers.csprojAssemblyReference.cache
+C:\Users\User\source\repos\ChatServer\ChatServer.ServerHelpers\obj\Debug\netstandard2.0\ChatServer.ServerHelpers.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\ChatServer\ChatServer.ServerHelpers\obj\Debug\netstandard2.0\ChatServer.ServerHelpers.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\ChatServer\ChatServer.ServerHelpers\obj\Debug\netstandard2.0\ChatServer.ServerHelpers.AssemblyInfo.cs
+C:\Users\User\source\repos\ChatServer\ChatServer.ServerHelpers\obj\Debug\netstandard2.0\ChatServer.ServerHelpers.dll
+C:\Users\User\source\repos\ChatServer\ChatServer.ServerHelpers\obj\Debug\netstandard2.0\ChatServer.ServerHelpers.pdb
+C:\Users\User\Desktop\Main Folder\ChatServer\ChatServer.ServerHelpers\bin\Debug\netstandard2.0\ChatServer.ServerHelpers.deps.json
+C:\Users\User\Desktop\Main Folder\ChatServer\ChatServer.ServerHelpers\bin\Debug\netstandard2.0\ChatServer.ServerHelpers.dll
+C:\Users\User\Desktop\Main Folder\ChatServer\ChatServer.ServerHelpers\bin\Debug\netstandard2.0\ChatServer.ServerHelpers.pdb
+C:\Users\User\Desktop\Main Folder\ChatServer\ChatServer.ServerHelpers\obj\Debug\netstandard2.0\ChatServer.ServerHelpers.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\Main Folder\ChatServer\ChatServer.ServerHelpers\obj\Debug\netstandard2.0\ChatServer.ServerHelpers.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\Main Folder\ChatServer\ChatServer.ServerHelpers\obj\Debug\netstandard2.0\ChatServer.ServerHelpers.AssemblyInfo.cs
+C:\Users\User\Desktop\Main Folder\ChatServer\ChatServer.ServerHelpers\obj\Debug\netstandard2.0\ChatServer.ServerHelpers.dll
+C:\Users\User\Desktop\Main Folder\ChatServer\ChatServer.ServerHelpers\obj\Debug\netstandard2.0\ChatServer.ServerHelpers.pdb
+C:\Users\User\Desktop\Main Folder\ChatServer\ChatServer.ServerHelpers\obj\Debug\netstandard2.0\ChatServer.ServerHelpers.csprojAssemblyReference.cache
+C:\Users\User\Desktop\Main Folder\ChatServer\ChatServer.ServerHelpers\bin\Debug\netstandard2.0\ChatServer.Messaging.dll
+C:\Users\User\Desktop\Main Folder\ChatServer\ChatServer.ServerHelpers\bin\Debug\netstandard2.0\ChatServer.Messaging.pdb
+C:\Users\User\Desktop\Main Folder\ChatServer\ChatServer.ServerHelpers\obj\Debug\netstandard2.0\ChatServer.ServerHelpers.csproj.CopyComplete
