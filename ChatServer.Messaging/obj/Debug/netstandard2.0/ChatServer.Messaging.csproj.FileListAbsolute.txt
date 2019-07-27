@@ -1,0 +1,9 @@
+C:\Users\User\Desktop\Main Folder\ChatServer\ChatServer.Messaging\bin\Debug\netstandard2.0\ChatServer.Messaging.deps.json
+C:\Users\User\Desktop\Main Folder\ChatServer\ChatServer.Messaging\bin\Debug\netstandard2.0\ChatServer.Messaging.dll
+C:\Users\User\Desktop\Main Folder\ChatServer\ChatServer.Messaging\bin\Debug\netstandard2.0\ChatServer.Messaging.pdb
+C:\Users\User\Desktop\Main Folder\ChatServer\ChatServer.Messaging\obj\Debug\netstandard2.0\ChatServer.Messaging.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\Main Folder\ChatServer\ChatServer.Messaging\obj\Debug\netstandard2.0\ChatServer.Messaging.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\Main Folder\ChatServer\ChatServer.Messaging\obj\Debug\netstandard2.0\ChatServer.Messaging.AssemblyInfo.cs
+C:\Users\User\Desktop\Main Folder\ChatServer\ChatServer.Messaging\obj\Debug\netstandard2.0\ChatServer.Messaging.dll
+C:\Users\User\Desktop\Main Folder\ChatServer\ChatServer.Messaging\obj\Debug\netstandard2.0\ChatServer.Messaging.pdb
+C:\Users\User\Desktop\Main Folder\ChatServer\ChatServer.Messaging\obj\Debug\netstandard2.0\ChatServer.Messaging.csprojAssemblyReference.cache
